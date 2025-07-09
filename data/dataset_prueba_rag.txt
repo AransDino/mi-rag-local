@@ -1,0 +1,50 @@
+=== DOCUMENTO 1 ===
+Título: Guía de Viaje a Lanzarote
+
+Lanzarote es una de las Islas Canarias más visitadas por su belleza volcánica y playas únicas. Entre los puntos más destacados se encuentran el Parque Nacional de Timanfaya, la Cueva de los Verdes y los Jameos del Agua. La gastronomía local incluye platos como las papas arrugadas con mojo picón y el sancocho canario.
+
+=== DOCUMENTO 2 ===
+Título: Introducción a la Inteligencia Artificial
+
+La inteligencia artificial es una rama de la informática que estudia la creación de sistemas capaces de realizar tareas que requieren inteligencia humana. Entre sus áreas se encuentran el aprendizaje automático, el procesamiento del lenguaje natural y la visión por computadora. Modelos como GPT-4 han revolucionado el campo por su capacidad de generar texto coherente y contextualizado.
+
+=== DOCUMENTO 3 ===
+Título: Consejos para Comprar Vivienda
+
+Comprar una vivienda es una de las decisiones financieras más importantes. Se recomienda revisar la ubicación, estado legal del inmueble, tasación y condiciones hipotecarias. Es fundamental contar con asesoramiento profesional y revisar detenidamente todos los documentos antes de firmar.
+
+=== DOCUMENTO 4 ===
+Título: Manual de Seguridad en el Trabajo
+
+Toda empresa debe garantizar la seguridad y salud de sus trabajadores. Esto incluye formaciones periódicas, uso de equipos de protección individual (EPI), y protocolos ante emergencias. La ley de prevención de riesgos laborales en España regula estos aspectos y obliga a las empresas a evaluaciones periódicas de riesgos.
+
+=== DOCUMENTO 5 ===
+Título: Receta Tradicional de Tortilla Española
+
+Para preparar una auténtica tortilla española necesitas huevos, patatas, aceite de oliva y sal. Se fríen las patatas en abundante aceite hasta que estén blandas, luego se mezclan con los huevos batidos y se cocina la mezcla en una sartén a fuego medio. Se puede añadir cebolla si se desea.
+
+=== DOCUMENTO 6 ===
+Título: Resumen de la Constitución Española de 1978
+
+La Constitución Española de 1978 es la norma suprema del ordenamiento jurídico en España. Establece un estado social y democrático de derecho, con división de poderes, reconocimiento de derechos fundamentales y un sistema parlamentario. Fue aprobada en referéndum el 6 de diciembre de 1978.
+
+=== DOCUMENTO 7 ===
+Título: Impacto del Cambio Climático en Europa
+
+El cambio climático está provocando aumentos en la temperatura media, olas de calor más frecuentes y fenómenos meteorológicos extremos. Europa ha experimentado sequías severas, incendios forestales y pérdidas agrícolas. Se requiere una acción conjunta y políticas de adaptación y mitigación urgentes.
+
+=== DOCUMENTO 8 ===
+Título: Funcionamiento de los Paneles Solares
+
+Los paneles solares convierten la luz del sol en electricidad mediante el efecto fotovoltaico. Están compuestos por células de silicio que generan corriente continua al recibir fotones. Un inversor transforma esta corriente en alterna para el consumo doméstico o su inyección a la red.
+
+=== DOCUMENTO 9 ===
+Título: Historia de la Guerra Civil Española
+
+La Guerra Civil Española tuvo lugar entre 1936 y 1939, enfrentando al bando republicano contra el sublevado, liderado por el general Francisco Franco. Finalizó con la victoria franquista y el establecimiento de una dictadura que duró hasta 1975. Fue un conflicto complejo con profundas consecuencias sociales y políticas.
+
+=== DOCUMENTO 10 ===
+Título: Protocolos ante Incendios en Edificios
+
+En caso de incendio en un edificio, es vital mantener la calma, alertar a los servicios de emergencia y evacuar siguiendo las rutas señalizadas. No se deben utilizar ascensores y hay que cerrar puertas para evitar la propagación del fuego. Tener extintores accesibles y revisados periódicamente es clave para una primera intervención eficaz.
+
