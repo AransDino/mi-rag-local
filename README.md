@@ -13,9 +13,9 @@ Este proyecto implementa un sistema de Generación Aumentada por Recuperación (
 
 Sigue estos pasos para poner en marcha el proyecto.
 
-1.  **Clonar el Repositorio** (si se ha descargado de otro sitio)
+1.  **Clonar el Repositorio** (si lo has descargado de otro sitio)
     ```bash
-    git clone <url-del-repositorio>
+    git clone https://github.com/AransDino/mi-rag-local.git
     cd mi-rag-local
     ```
 
