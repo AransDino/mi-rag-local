@@ -64,3 +64,33 @@ Puedes modificar las siguientes variables al principio del script `rag.py` para 
 
 - `MODEL_NAME`: El nombre del modelo de Ollama que quieres usar (ej. `"llama3.2-vision:latest"`).
 - `EMBEDDING_MODEL_NAME`: El modelo de Hugging Face para crear los embeddings.
+
+## Historial de Cambios
+
+### 09 de Julio de 2025 - Mejoras en la Extracción y Configuración del RAG
+
+Esta actualización incluye varias mejoras y correcciones para optimizar el rendimiento del sistema RAG:
+
+- **Actualización de Dependencias**: Se han actualizado las importaciones de LangChain a sus paquetes más recientes (`langchain-huggingface`, `langchain-ollama`) y se ha corregido `requirements.txt` para incluir todas las dependencias necesarias (`unstructured[pdf]`, `pypdf`).
+- **Mejoras en la Extracción de Documentos**:
+    - Se ha corregido un `SyntaxError` persistente en `rag.py` relacionado con la impresión del contenido extraído.
+    - Se ha añadido una salida detallada (`--- Contenido Extraído de los Documentos ---`) durante la creación de la base de datos para visualizar el texto que `unstructured` extrae de los documentos (incluidos PDFs).
+- **Optimización de la Recuperación (Retriever)**:
+    - Se ha aumentado el número de fragmentos (`k`) que el retriever busca de `2` a `6` para proporcionar más contexto al LLM.
+    - Se ha implementado un `Prompt Template` personalizado para guiar al LLM a responder únicamente con la información proporcionada en el contexto y a indicar explícitamente cuando la información no se encuentra.
+- **Corrección de Inicialización del LLM**: Se ha corregido el `NameError` al inicializar el modelo de Ollama (`Ollama` a `OllamaLLM`).
+
+## Herramientas Adicionales
+
+### `inspect_db.py`
+
+Este script permite inspeccionar el contenido de la base de datos vectorial `vectordb` que crea `rag.py`. Es útil para verificar qué documentos y fragmentos se han almacenado, así como sus metadatos.
+
+**Uso:**
+
+1.  Asegúrate de que `rag.py` haya ejecutado al menos una vez y haya creado la carpeta `vectordb`.
+2.  Con tu entorno virtual activado, ejecuta:
+    ```bash
+    python inspect_db.py
+    ```
+3.  El script mostrará el número total de documentos en la base de datos y los primeros 5 documentos con su contenido parcial y metadatos.

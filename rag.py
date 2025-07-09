@@ -1,10 +1,11 @@
 import os
 from langchain_community.vectorstores import Chroma
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.document_loaders import DirectoryLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.llms import Ollama
+from langchain_ollama import OllamaLLM
 from langchain.chains import RetrievalQA
+from langchain.prompts import PromptTemplate
 
 # --- Configuración ---
 DATA_PATH = "data"
@@ -39,10 +40,16 @@ def create_vector_db():
         return None
 
     print(f"\n¡Carga completada! Se han procesado {len(documents)} páginas/documentos en total.")
+    print("\n--- Contenido Extraído de los Documentos ---")
+    for i, doc in enumerate(documents):
+        print(f"\n--- Documento {i+1}: {doc.metadata.get('source', 'Desconocido')} (Página: {doc.metadata.get('page', 'N/A')}) ---")
+        print(doc.page_content)
+        print("----------------------------------------------------------------------------------------------------")
+    print("\n--- Fin Contenido Extraído ---")
     
     # --- PASO 3: Dividir documentos en fragmentos (chunks) ---
     print("\nPaso 3: Dividiendo los documentos en fragmentos más pequeños (chunks)...")
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1500, chunk_overlap=150)
     texts = text_splitter.split_documents(documents)
     print(f"Documentos divididos en {len(texts)} fragmentos de texto.")
 
@@ -67,17 +74,23 @@ def main():
     print("Cargando base de datos vectorial existente...")
     embeddings = HuggingFaceEmbeddings(model_name=EMBEDDING_MODEL_NAME)
     db = Chroma(persist_directory=DB_PATH, embedding_function=embeddings)
-    retriever = db.as_retriever(search_kwargs={"k": 2}) # k es el número de fragmentos a recuperar
+    retriever = db.as_retriever(search_kwargs={"k": 6}) # Aumentamos a 6 fragmentos
 
     print(f"Cargando LLM desde Ollama: {MODEL_NAME}...")
-    llm = Ollama(model=MODEL_NAME)
+    llm = OllamaLLM(model=MODEL_NAME)
 
-    # Creando la cadena de RetrievalQA
+    # Definimos un prompt personalizado para guiar al LLM
+    QA_CHAIN_PROMPT = PromptTemplate.from_template(
+        """Eres un asistente experto en documentos. Utiliza únicamente la siguiente información proporcionada en el contexto para responder a la pregunta. Si la respuesta no se encuentra en el contexto, di 'No tengo información sobre eso en los documentos proporcionados.' No inventes respuestas.\n\nContexto: {context}\n\nPregunta: {question}\n\nRespuesta:"""
+    )
+
+    # Creando la cadena de RetrievalQA con el prompt personalizado
     qa_chain = RetrievalQA.from_chain_type(
         llm=llm,
         chain_type="stuff",
         retriever=retriever,
-        return_source_documents=True
+        return_source_documents=True,
+        chain_type_kwargs={"prompt": QA_CHAIN_PROMPT}
     )
 
     print("\n--- RAG Local Listo ---")
