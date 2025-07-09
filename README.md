@@ -54,7 +54,9 @@ Sigue estos pasos para poner en marcha el proyecto.
     ```
 
 3.  **Actualizar la Base de Conocimiento**: Si en el futuro añades, modificas o eliminas archivos en la carpeta `data`, debes forzar la reconstrucción de la base de datos. Para ello:
-    - **Borra la carpeta `vectordb`**.
+    - **Borra la carpeta `vectordb`** usando el comando adecuado para tu sistema operativo:
+        - **Windows (CMD/PowerShell):** `rd /s /q vectordb`
+        - **Linux/macOS (Bash):** `rm -rf vectordb`
     - Vuelve a ejecutar `python rag.py`.
 
 4.  **Interactuar**: Escribe tus preguntas en la terminal y pulsa Enter. Para salir, escribe `salir`.
@@ -72,9 +74,10 @@ Puedes modificar las siguientes variables al principio del script `rag.py` para 
 
 - **Problema Solucionado**: Se resolvió un problema fundamental por el cual el LLM no respondía correctamente a pesar de que la información estaba en el contexto. La causa era que el contexto era demasiado amplio y ruidoso (ej. un único archivo de texto con 10 temas diferentes se trataba como un solo bloque de información).
 - **Implementación**: Se ha modificado la función `create_vector_db` para que:
-    1.  Detecte y procese de forma especial archivos de texto que contengan un separador personalizado (`=== DOCUMENTO X ===`).
+    1.  Detecte y procese de forma especial archivos de texto que contengan un separador personalizado (`=== DOCUMENTO X ===`), extrayendo incluso metadatos como el título.
     2.  Divida el contenido de dicho archivo en múltiples "mini-documentos" antes de la indexación.
-    3.  Cargue el resto de archivos (PDFs, etc.) de forma normal.
+    3.  Cargue **todos los demás archivos** presentes en la carpeta `data` (PDFs, otros `.txt`, etc.) de forma estándar, asegurando que no haya duplicados.
+    4.  Combine todos estos documentos para la creación de la base de datos vectorial.
 - **Resultado**: La base de datos ahora contiene documentos más pequeños y semánticamente puros, lo que permite al retriever encontrar un contexto mucho más preciso y enfocado, mejorando drásticamente la calidad y fiabilidad de las respuestas del LLM.
 
 ### 09 de Julio de 2025 - Mejoras en la Extracción y Configuración del RAG

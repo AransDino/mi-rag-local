@@ -41,7 +41,15 @@ def create_vector_db():
             for part in parts:
                 if part.strip():
                     doc_count += 1
-                    all_documents.append(Document(page_content=part.strip(), metadata={"source": special_file_path, "document_part": doc_count}))
+                    
+                    # Extraer el título usando regex
+                    title_match = re.search(r'Título:\s*(.+?)\n', part)
+                    extracted_title = title_match.group(1).strip() if title_match else "Título Desconocido"
+                    
+                    # Limpiar el contenido eliminando la línea del título
+                    cleaned_content = re.sub(r'Título:\s*.+?\n', '', part, 1).strip()
+                    
+                    all_documents.append(Document(page_content=cleaned_content, metadata={"source": special_file_path, "document_part": doc_count, "title": extracted_title}))
             
             print(f"'{special_file_path}' fue dividido en {doc_count} documentos semánticos.")
         except Exception as e:
@@ -56,7 +64,7 @@ def create_vector_db():
         glob="**/*", 
         show_progress=True, 
         use_multithreading=True,
-        exclude=[special_file_path]
+        exclude=["dataset_prueba_rag.txt"]
     )
     other_documents = loader.load()
     all_documents.extend(other_documents)
@@ -64,6 +72,8 @@ def create_vector_db():
     if not all_documents:
         print("¡Error! No se pudo cargar ningún documento.")
         return None
+
+    print(f"Total de documentos cargados antes de dividir: {len(all_documents)}")
 
     print(f"\n¡Carga completada! Se han procesado {len(all_documents)} documentos en total.")
     
