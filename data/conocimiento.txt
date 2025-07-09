@@ -1,0 +1,1 @@
+Gemini es un modelo de lenguaje grande, multimodal, entrenado por Google. La capital de Francia es París y la de España es Madrid. Los sistemas RAG (Retrieval-Augmented Generation) mejoran la precisión de los LLMs al proporcionarles contexto relevante de documentos externos antes de generar una respuesta.
